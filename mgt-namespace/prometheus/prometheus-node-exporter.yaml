@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: node-exporter
-  namespace: monitoring
+  name: node-exporter-ds
+  namespace: mgt
   labels:
     k8s-app: node-exporter
 spec:
@@ -22,7 +22,7 @@ spec:
           protocol: TCP
           name: http
       tolerations:
-      - key: "monitoring"
+      - key: "mgt"
         operator: "Equal"
         value: "present"
         effect: "NoSchedule"      
@@ -38,10 +38,10 @@ spec:
         operator: "Equal"
         value: "present"
         effect: "NoSchedule"
-      - key: "middleware"
-        operator: "Equal"
-        value: "present"
-        effect: "NoSchedule"
+#      - key: "middleware"
+#        operator: "Equal"
+#        value: "present"
+#        effect: "NoSchedule"
 ---
 apiVersion: v1
 kind: Service
@@ -49,7 +49,7 @@ metadata:
   labels:
     k8s-app: node-exporter
   name: node-exporter
-  namespace: monitoring
+  namespace: mgt
 spec:
   ports:
   - name: http

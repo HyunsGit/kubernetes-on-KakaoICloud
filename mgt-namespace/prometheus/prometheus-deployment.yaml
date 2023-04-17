@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prometheus-deployment
-  namespace: monitoring
+  name: prometheus-deploy
+  namespace: mgt
 spec:
   replicas: 1
   selector:
@@ -27,7 +27,7 @@ spec:
             - name: prometheus-storage-volume
               mountPath: /prometheus/
       tolerations:
-      - key: "monitoring"
+      - key: "mgt"
         operator: "Equal"
         value: "present"
         effect: "NoSchedule"              

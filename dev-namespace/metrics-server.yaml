@@ -173,7 +173,7 @@ spec:
         - mountPath: /tmp
           name: tmp-dir
       tolerations:
-      - key: "middleware"
+      - key: "mgt"
         operator: "Equal"
         value: "present"
         effect: "NoSchedule" 

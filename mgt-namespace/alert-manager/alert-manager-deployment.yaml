@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: alertmanager
-  namespace: monitoring
+  name: alertmanager-deploy
+  namespace: mgt
 spec:
   replicas: 1
   selector:
@@ -31,7 +31,7 @@ spec:
         - name: alertmanager
           mountPath: /alertmanager
       tolerations:
-      - key: "monitoring"
+      - key: "mgt"
         operator: "Equal"
         value: "present"
         effect: "NoSchedule"         

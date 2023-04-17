@@ -3,8 +3,8 @@ kind: Deployment
 metadata:
   labels:
     app: grafana
-  name: grafana
-  namespace: monitoring
+  name: grafana-deploy
+  namespace: mgt
 spec:
   selector:
     matchLabels:
@@ -52,7 +52,7 @@ spec:
             - mountPath: /monitoring
               name: grafana-pv
       tolerations:
-      - key: "monitoring"
+      - key: "mgt"
         operator: "Equal"
         value: "present"
         effect: "NoSchedule"  

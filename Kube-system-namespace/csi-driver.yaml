@@ -338,15 +338,11 @@ spec:
           resources:
             {}
       tolerations:
-      - key: "middleware"
+      - key: "mgt"
         operator: "Equal"
         value: "present"
         effect: "NoSchedule" 
       - key: "ingress"
-        operator: "Equal"
-        value: "present"
-        effect: "NoSchedule"  
-      - key: "monitoring"
         operator: "Equal"
         value: "present"
         effect: "NoSchedule"  
@@ -548,7 +544,7 @@ spec:
           resources:
             {}
       tolerations:
-      - key: "middleware"
+      - key: "mgt"
         operator: "Equal"
         value: "present"
         effect: "NoSchedule"  
