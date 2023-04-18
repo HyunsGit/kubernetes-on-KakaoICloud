@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prometheus-deploy
-  namespace: mgt
+  name: prometheus-deployment
+  namespace: monitoring
 spec:
   replicas: 1
   selector:
@@ -26,21 +26,16 @@ spec:
               mountPath: /etc/prometheus/
             - name: prometheus-storage-volume
               mountPath: /prometheus/
-            - name: prometheus-deploy-pv
-              mountPath: /monitoring
       tolerations:
       - key: "mgt"
         operator: "Equal"
         value: "present"
-        effect: "NoSchedule"              
+        effect: "NoSchedule"   
       volumes:
         - name: prometheus-config-volume
           configMap:
             defaultMode: 420
             name: prometheus-server-conf
-        - name: prometheus-deploy-pv
-          persistentVolumeClaim:
-            claimName: prometheus-deploy-pvc
 
         - name: prometheus-storage-volume
           emptyDir: {}

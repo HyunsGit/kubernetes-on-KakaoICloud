@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: grafana
-  name: grafana-deploy
+  name: grafana
   namespace: mgt
 spec:
   selector:
@@ -50,6 +50,7 @@ spec:
               memory: 750Mi
           volumeMounts:
             - mountPath: /monitoring
+#             - mountPath: /grafana
               name: grafana-pv
       tolerations:
       - key: "mgt"

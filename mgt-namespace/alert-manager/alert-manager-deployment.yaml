@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: alertmanager-deploy
+  name: alertmanager
   namespace: mgt
 spec:
   replicas: 1

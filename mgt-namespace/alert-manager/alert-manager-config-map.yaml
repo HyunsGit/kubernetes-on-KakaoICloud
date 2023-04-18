@@ -24,7 +24,7 @@ data:
     receivers:
     - name: alert-emailer
       email_configs:
-      - to: chomalkin@gmail.com
+      - to: hans.chicken@dktechin.com
         send_resolved: false
         from: from-email@email.com
         smarthost: smtp.eample.com:25

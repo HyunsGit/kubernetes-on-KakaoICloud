@@ -4,14 +4,14 @@ metadata:
   name: prometheus-server-conf
   labels:
     name: prometheus-server-conf
-  namespace: mgt
+  namespace: monitoring
 data:
   prometheus.rules: |-
     groups:
     - name: container memory alert
       rules:
-      - alert: container memory usage rate is very high( > 1%)
-        expr: sum(container_memory_working_set_bytes{pod!="", name=""})/ sum (kube_node_status_allocatable_memory_bytes) * 100 > 1
+      - alert: container memory usage rate is very high( > 55%)
+        expr: sum(container_memory_working_set_bytes{pod!="", name=""})/ sum (kube_node_status_allocatable_memory_bytes) * 100 > 55
         for: 1m
         labels:
           severity: fatal
@@ -21,8 +21,8 @@ data:
           description: "{{ $labels.job }} Memory Usage: {{ $value }}"
     - name: container CPU alert
       rules:
-      - alert: container CPU usage rate is very high( > 1%)
-        expr: sum (rate (container_cpu_usage_seconds_total{pod!=""}[1m])) / sum (machine_cpu_cores) * 100 > 1
+      - alert: container CPU usage rate is very high( > 10%)
+        expr: sum (rate (container_cpu_usage_seconds_total{pod!=""}[1m])) / sum (machine_cpu_cores) * 100 > 10
         for: 1m
         labels:
           severity: fatal
@@ -39,7 +39,7 @@ data:
       - scheme: http
         static_configs:
         - targets:
-          - "alertmanager.mgt.svc:9093"
+          - "alertmanager.monitoring.svc:9093"
 
     scrape_configs:
       - job_name: 'kubernetes-apiservers'
